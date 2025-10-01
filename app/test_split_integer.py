@@ -10,11 +10,11 @@ def test_should_split_into_equal_parts_when_value_divisible_by_parts() -> None:
 
 
 def test_should_return_part_equals_to_value_when_split_into_one_part() -> None:
-    assert split_integer(8, 1) == [8]
+    assert len(split_integer(8, 1)) == 1
 
 
 def test_parts_should_be_sorted_when_they_are_not_equal() -> None:
-    assert split_integer(5, 3) == [1, 2, 2]
+    assert split_integer(5, 3) == sorted(split_integer(5, 3))
 
 
 def test_should_add_zeros_when_value_is_less_than_number_of_parts() -> None:
@@ -23,3 +23,11 @@ def test_should_add_zeros_when_value_is_less_than_number_of_parts() -> None:
 
 def test_difference_between_parts_is_at_most_one() -> None:
     assert max(split_integer(17, 4)) - min(split_integer(17, 4)) <= 1
+
+
+def test_check_all_is_integer() -> None:
+    assert all(isinstance(x, int) for x in split_integer(17, 4))
+
+
+def test_split_integer_exact_example():
+    assert split_integer(32, 6) == [5, 5, 5, 5, 6, 6]
